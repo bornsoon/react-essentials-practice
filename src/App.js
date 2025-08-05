@@ -5,15 +5,38 @@ import UserInput from "./components/UserInput.jsx";
 import Results from "./components/Results.jsx";
 
 function App() {
-  const [userInput, setUserInput] = useState([]);
+  const [userInputs, setUserInputs] = useState({
+    initialInvestment: 0,
+    annualInvestment: 0,
+    expectedReturn: 0,
+    duration: 0,
+  });
 
-  const inputIsValid = userInput.lengh > 0;
+  // const inputIsValid = userInputs.lenght > 0;
+
+  function handleChange(field, newValue) {
+    setUserInputs(prevUserInput => {
+      return {
+        ...prevUserInput,
+        // [field]: +e.target.value,
+        [field]: +newValue,
+      }
+    });
+  }
+
+  // const handleChange = (field, e) => {
+  //   const inputValue = +e.target.value;
+  //    setUserInputs(prevUserInput => ({
+  //     ...prevUserInput,
+  //     [field]: inputValue,
+  //   }));
+  // }
 
   return (
     <>
       <Header />
-      <UserInput />
-      {inputIsValid && <Results />}
+      <UserInput userInputs={userInputs} onChange={handleChange} />
+      <Results inputs={userInputs} />
     </>
   );
 }
