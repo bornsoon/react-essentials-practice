@@ -14,7 +14,7 @@ function App() {
   });
 
   // 유효할 때만 컴포넌트 렌더링하기 위해 변수 설정
-  const inputIsValid = userInput.duration >= 1;
+  // const inputIsValid = userInput.duration >= 1;
 
   function handleChange(inputIdentifier, newValue) {
     // 여기로 넘어오는 newValue는 문자열!! -> '+'는 concat이 되어버림
@@ -40,10 +40,11 @@ function App() {
     <>
       <Header />
       <UserInput userInput={userInput} onChange={handleChange} />
-      {!inputIsValid && (
+      <Results input={userInput} />
+      {/* {!inputIsValid && (
         <p className="center">Please enter a duration greater than zero.</p>
-      )}
-      {inputIsValid && <Results input={userInput} />}
+      )} */}
+      {/* {inputIsValid && <Results input={userInput} />} */}
     </>
   );
 }
